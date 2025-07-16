@@ -1,28 +1,11 @@
-const DIRECTION = {
-  H: "horizontal",
-  V: "vertical",
-} as const;
+import { DIRECTION, SYMBOL, type TDirection } from "../constants/CApp";
+import { wordList } from "../data/initial";
 
-const SYMBOL = {
-  EMPTY: ".",
-  BLOCKED: "#",
-} as const;
-
-type TSymbol = (typeof SYMBOL)[keyof typeof SYMBOL];
-
-type TDirection = (typeof DIRECTION)[keyof typeof DIRECTION];
-type TWordPlacement = {
+export type TWordPlacement = {
   word: string;
   x: number;
   y: number;
   direction: TDirection;
-};
-
-const x: TWordPlacement = {
-  word: "example",
-  x: 0,
-  y: 0,
-  direction: DIRECTION.H,
 };
 
 type TCrosswordGrid = {
@@ -32,40 +15,7 @@ type TCrosswordGrid = {
   height: number;
 };
 
-const wordList = [
-  "nude",
-  "boudoir",
-  "erotic",
-  "sensual",
-  "provocative",
-  "intimate",
-  "risqué",
-  "exposed",
-  "bare",
-  "seductive",
-  "glamour",
-  "tease",
-  "alluring",
-  "flirtatious",
-  "revealing",
-  "sultry",
-  "lurid",
-  "titillating",
-  "suggestive",
-  "captivating",
-  "enticing",
-  "arousing",
-  "uninhibited",
-  "bold",
-  "steamy",
-  "ravishing",
-  "tempting",
-  "voluptuous",
-  "scantily",
-  "daring",
-];
-
-class MyCrosswordGenerator {
+export class MyCrosswordGenerator {
   private cross: TCrosswordGrid;
 
   constructor(width: number, height: number) {
@@ -204,11 +154,3 @@ class MyCrosswordGenerator {
     return true;
   }
 }
-
-const xx = new MyCrosswordGenerator(20, 20);
-xx.printGrid();
-xx.fillGridWithRandomLetters();
-xx.printGrid();
-
-// xx.printPossiblePlacements("example");
-// xx.printPossiblePlacements("crossword");
