@@ -10,6 +10,7 @@ export type TWordPlacement = {
 
 type TCrosswordGrid = {
   grid: string[][];
+  gridFilled: string[][];
   placements: TWordPlacement[];
   width: number;
   height: number;
@@ -23,6 +24,7 @@ export class MyCrosswordGenerator {
       width,
       height,
       grid: [],
+      gridFilled: [],
       placements: [],
     };
     this.clearGrid();
@@ -113,10 +115,12 @@ export class MyCrosswordGenerator {
     return placements;
   }
   public fillGridWithRandomLetters(): void {
+    // Copy the crossword grid to gridFilled
+    this.cross.gridFilled = this.cross.grid.map((row) => [...row]);
     for (let y = 0; y < this.cross.height; y++) {
       for (let x = 0; x < this.cross.width; x++) {
-        if (this.cross.grid[y][x] === SYMBOL.EMPTY) {
-          this.cross.grid[y][x] = String.fromCharCode(
+        if (this.cross.gridFilled[y][x] === SYMBOL.EMPTY) {
+          this.cross.gridFilled[y][x] = String.fromCharCode(
             65 + Math.floor(Math.random() * 26)
           );
         }
