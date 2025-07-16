@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { SYMBOL } from "../constants/CApp";
 import { MyCrosswordGenerator } from "../logic/mycross";
+import { useAppDispatch, useAppSelector } from "../stores/hooks";
+import { toggleTheme } from "../stores/slices/appSlice";
 
 export default function PageTwo() {
   const [gridSize, setGridSize] = useState(20);
@@ -34,6 +36,8 @@ export default function PageTwo() {
     setGridSize(size);
     handleRegenerate(size);
   };
+  const isDarkMode = useAppSelector((state) => state.app.isDarkTheme);
+  const dispatch = useAppDispatch();
 
   return (
     <Container sx={{ mt: 3 }}>
@@ -41,6 +45,15 @@ export default function PageTwo() {
         <Typography variant="h4" gutterBottom>
           Crossword Grid
         </Typography>
+        <Box sx={{ mt: 2, display: "flex", alignItems: "center" }}>
+          <Switch
+            checked={isDarkMode}
+            onChange={() => dispatch(toggleTheme())}
+          />
+          <Typography variant="body1" sx={{ ml: 1 }}>
+            Toggle Dark mode
+          </Typography>
+        </Box>
         <Box sx={{ mb: 2 }}>
           <Typography gutterBottom>
             Grid Size: {gridSize} x {gridSize}
@@ -92,16 +105,19 @@ export default function PageTwo() {
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          border: "1px solid",
+
                           fontWeight: "bold",
                           fontSize: 18,
-                          boxSizing: "border-box",
+
                           borderRadius: 2,
-                          color: "black",
                           backgroundColor:
                             cell === SYMBOL.EMPTY
                               ? "secondary.main"
                               : "primary.main",
+                          color:
+                            cell === SYMBOL.EMPTY
+                              ? "secondary.contrastText"
+                              : "primary.contrastText",
 
                           margin: "2px",
                         }}
