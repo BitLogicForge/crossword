@@ -11,6 +11,7 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import { SYMBOL } from "../constants/CApp";
 import { MyCrosswordGenerator } from "../logic/mycross";
 
 export default function PageTwo() {
@@ -35,7 +36,7 @@ export default function PageTwo() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <Container sx={{ mt: 3 }}>
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h4" gutterBottom>
           Crossword Grid
@@ -77,7 +78,7 @@ export default function PageTwo() {
             Regenerate Grid
           </Button>
         </Box>
-        <Table>
+        <Table sx={{ width: "fit-content", margin: "auto" }}>
           <TableBody>
             {(showFilled ? cgen["cross"].gridFilled : cgen["cross"].grid).map(
               (row, rowIdx) => (
@@ -95,6 +96,12 @@ export default function PageTwo() {
                           fontWeight: "bold",
                           fontSize: 18,
                           boxSizing: "border-box",
+                          borderRadius: 2,
+                          color: "black",
+                          backgroundColor:
+                            cell === SYMBOL.EMPTY
+                              ? "secondary.main"
+                              : "primary.main",
 
                           margin: "2px",
                         }}
