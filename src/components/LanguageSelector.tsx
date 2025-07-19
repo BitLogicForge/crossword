@@ -5,6 +5,11 @@ import { useTranslation } from "react-i18next";
 const LANGUAGES = [
   { code: "en", country: "GB", full: "English" },
   { code: "pl", country: "PL", full: "Polski" },
+  { code: "fr", country: "FR", full: "Français" },
+  { code: "de", country: "DE", full: "Deutsch" },
+  { code: "es", country: "ES", full: "Español" },
+  { code: "it", country: "IT", full: "Italiano" },
+  { code: "ru", country: "RU", full: "Русский" },
 ];
 
 export default function LanguageSelector() {

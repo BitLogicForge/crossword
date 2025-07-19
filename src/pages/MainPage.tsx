@@ -53,7 +53,7 @@ export default function MainPage() {
 
   return (
     <Container sx={{ mt: 3 }}>
-      <Paper sx={{ p: 3 }}>
+      <Paper sx={{ p: 1, mb: 1 }}>
         <Box
           sx={{
             backgroundColor: "primary.light",
@@ -75,33 +75,37 @@ export default function MainPage() {
             {t("app.title")}
           </Typography>
         </Box>
-
-        <Box sx={{ mb: 2 }}>
-          <WidthSlider />
-          <HeightSlider />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            gap: 2,
+          }}
+        >
+          <FormControlLabel
+            control={
+              <Switch
+                checked={isDarkMode}
+                onChange={() => dispatch(toggleTheme())}
+              />
+            }
+            label={isDarkMode ? t("labels.darkMode") : t("labels.lightMode")}
+            sx={{ mb: 2 }}
+          />
+          <LanguageSelector />
         </Box>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={showFilled}
-              onChange={() => dispatch(toggleFilledGrid())}
-            />
-          }
-          label={showFilled ? t("labels.filledGrid") : t("labels.justWords")}
-          sx={{ mb: 2 }}
-        />
-        <FormControlLabel
-          control={
-            <Switch
-              checked={isDarkMode}
-              onChange={() => dispatch(toggleTheme())}
-            />
-          }
-          label={isDarkMode ? t("labels.darkMode") : t("labels.lightMode")}
-          sx={{ mb: 2 }}
-        />
-        <LanguageSelector />
-        <Box sx={{ mb: 2 }}>
+      </Paper>
+      <Paper sx={{ p: 3 }}>
+        <Box sx={{ display: "flex", gap: 2 }}>
+          <Box sx={{ flex: 1 }}>
+            <WidthSlider />
+          </Box>
+          <Box sx={{ flex: 1 }}>
+            <HeightSlider />
+          </Box>
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
           <Button
             variant="contained"
             color="primary"
@@ -109,6 +113,16 @@ export default function MainPage() {
           >
             {t("labels.regenerate")}
           </Button>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={showFilled}
+                onChange={() => dispatch(toggleFilledGrid())}
+              />
+            }
+            label={showFilled ? t("labels.filledGrid") : t("labels.justWords")}
+            sx={{ mb: 2 }}
+          />
         </Box>
       </Paper>
       <Paper
