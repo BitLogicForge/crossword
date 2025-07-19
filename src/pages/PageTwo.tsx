@@ -58,7 +58,6 @@ export default function PageTwo() {
             <Switch
               checked={showFilled}
               onChange={() => setShowFilled((prev) => !prev)}
-              color="primary"
             />
           }
           label={showFilled ? "Show Filled Grid" : "Show Crossword Grid"}

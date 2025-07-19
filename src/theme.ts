@@ -4,14 +4,14 @@ export const themeOptions = {
 
   palette: {
     primary: {
-      main: '#007bff',
-      light: '#66a1ff',
-      dark: '#004080'
+      main: '#2e7d32',   // Green
+      light: '#60ad5e',
+      dark: '#005005'
     },
     secondary: {
-      main: '#673ab7',
-      light: '#b39ddb',
-      dark: '#3f1173'
+      main: '#f9a825',   // Amber/Yellowish
+      light: '#ffd95b',
+      dark: '#c17900'
     },
     error: {
       main: '#d32f2f',
