@@ -20,9 +20,6 @@ export default function Header() {
       <meta name="twitter:title" content={t("app.title")} />
       <meta name="twitter:description" content={t("app.description")} />
       <meta name="twitter:image" content={APP_IMAGE} />
-
-      <link rel="icon" type="image/svg+xml" href="/grid-svgrepo-com.svg" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </>
   );
 }
