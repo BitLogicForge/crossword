@@ -24,6 +24,12 @@ export default function WordAdd() {
         sx={{ flex: 1 }}
         value={inputWord}
         onChange={(e) => setInputWord(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            dispatch(addWordToList(inputWord));
+            setInputWord("");
+          }
+        }}
       />
       <Button
         variant="contained"
