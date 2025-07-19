@@ -1,5 +1,5 @@
 import { DIRECTION, SYMBOL, type TDirection } from "../constants/CApp";
-import { wordList } from "../data/initial";
+import type { TWord } from "../types/general";
 
 export type TWordPlacement = {
   word: string;
@@ -14,21 +14,24 @@ type TCrosswordGrid = {
   placements: TWordPlacement[];
   width: number;
   height: number;
+
 };
 
 export class MyCrosswordGenerator {
   private cross: TCrosswordGrid;
+  public noPlace: TWord[] = [];
 
-  constructor(width: number, height: number) {
+  constructor(width: number, height: number, words: TWord[]) {
     this.cross = {
       width,
       height,
       grid: [],
       gridFilled: [],
       placements: [],
+
     };
     this.clearGrid();
-    this.generateCrosswords(wordList);
+    this.generateCrosswords(words);
   }
   private clearGrid(): void {
     this.cross.grid = Array(this.cross.height)
@@ -37,16 +40,19 @@ export class MyCrosswordGenerator {
     this.cross.placements = [];
   }
 
-  private generateCrosswords(words: string[]): void {
-    const sortedWords = [...words].sort((a, b) => b.length - a.length);
+  private generateCrosswords(words: TWord[]): void {
+
+    // const sortedWords = [...words].sort((a, b) => b.label.length - a.label.length);
+    const sortedWords = [...words]
     // words to uppercase
     sortedWords.forEach((word, index) => {
-      sortedWords[index] = word.toUpperCase();
+      sortedWords[index] = { ...word, label: word.label.toUpperCase() };
     });
     sortedWords.forEach((word) => {
-      const placements = this.listPossiblePlacements(word);
+      const placements = this.listPossiblePlacements(word.label);
       if (placements.length === 0) {
         console.warn(`No placements found for word: ${word}`);
+        this.noPlace.push(word);
         return;
       }
       const placement =

@@ -17,29 +17,42 @@ import WordsList from "../components/WordsList";
 import { MyCrosswordGenerator } from "../logic/mycross";
 import { useAppDispatch, useAppSelector } from "../stores/hooks";
 import { toggleTheme } from "../stores/slices/appSlice";
+import { setNoPlaceWords } from "../stores/slices/crossSlice";
 
 export default function PageTwo() {
   const gridSize = useAppSelector((state) => state.cross.gridSize);
+  const words = useAppSelector((state) => state.cross.words);
+  const dispatch = useAppDispatch();
   const [cgen, setCgen] = useState(() => {
-    const generator = new MyCrosswordGenerator(gridSize.width, gridSize.height);
+    const generator = new MyCrosswordGenerator(
+      gridSize.width,
+      gridSize.height,
+      words
+    );
     generator.fillGridWithRandomLetters();
+    dispatch(setNoPlaceWords(generator.noPlace));
     return generator;
   });
   const [showFilled, setShowFilled] = useState(false);
 
   function handleRegenerate() {
-    const generator = new MyCrosswordGenerator(gridSize.width, gridSize.height);
+    const generator = new MyCrosswordGenerator(
+      gridSize.width,
+      gridSize.height,
+      words
+    );
     generator.fillGridWithRandomLetters();
+    dispatch(setNoPlaceWords(generator.noPlace));
+
     setCgen(generator);
   }
 
   const isDarkMode = useAppSelector((state) => state.app.isDarkTheme);
-  const dispatch = useAppDispatch();
 
   return (
     <Container sx={{ mt: 3 }}>
       <Paper sx={{ p: 3 }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom align="center">
           Crossword Grid
         </Typography>
         <Box sx={{ mt: 2, display: "flex", alignItems: "center" }}>

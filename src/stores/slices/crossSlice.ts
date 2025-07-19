@@ -1,8 +1,9 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { wordList } from '../../data/initial';
+import type { TWord } from "../../types/general";
 import { generateRandomId } from "../../utils/utils";
 
-type TExampleState = {
+type TCrossState = {
 
   gridSize: {
     width: number;
@@ -10,10 +11,12 @@ type TExampleState = {
   }
   currentGrid: string[][] | null;
   currentGridFilled: string[][] | null;
-  words: { label: string, id: string }[];
+  words: TWord[];
+  noPlace: TWord[];
 };
 
-const initialState: TExampleState = {
+
+const initialState: TCrossState = {
   gridSize: {
     width: 10,
     height: 10,
@@ -24,6 +27,7 @@ const initialState: TExampleState = {
     label: word.toUpperCase(),
     id: generateRandomId(20)
   }))],
+  noPlace: [],
 
 
 
@@ -64,6 +68,9 @@ const crossSlice = createSlice({
     removeWordFromList: (state, action) => {
       state.words = state.words.filter(word => word.id !== action.payload.id);
     },
+    setNoPlaceWords: (state, action: PayloadAction<TWord[]>) => {
+      state.noPlace = action.payload;
+    },
     resetExampleState: () => initialState,
 
   },
@@ -76,7 +83,7 @@ export const {
   resetGridSize,
   setCurrentGrid,
   setCurrentGridFilled,
-
+  setNoPlaceWords,
   addWordToList,
   removeWordFromList,
   resetExampleState
