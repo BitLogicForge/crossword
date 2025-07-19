@@ -10,7 +10,10 @@
     "height": "Hauteur",
     "justWords": "Seulement les mots",
     "filledGrid": "Grille remplie",
-    "language": "Langue"
+    "language": "Langue",
+    "close": "Fermer",
+    "contact": "Contact",
+    "email": "E-mail"
   },
   "app": {
     "title": "Générateur de mots croisés",

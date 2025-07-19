@@ -10,7 +10,10 @@
     "height": "Wysokość",
     "justWords": "Tylko słowa",
     "filledGrid": "Wypełniona siatka",
-    "language": "Język"
+    "language": "Język",
+    "close": "Zamknij",
+    "contact": "Kontakt",
+    "email": "Email"
   },
   "app": {
     "title": "Generator Krzyżówek",

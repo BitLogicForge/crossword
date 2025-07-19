@@ -10,7 +10,10 @@
     "height": "Höhe",
     "justWords": "Nur Wörter",
     "filledGrid": "Ausgefülltes Gitter",
-    "language": "Sprache"
+    "language": "Sprache",
+    "close": "Schließen",
+    "contact": "Kontakt",
+    "email": "E-Mail"
   },
   "app": {
     "title": "Kreuzworträtsel Generator",

@@ -8,6 +8,7 @@ import Switch from "@mui/material/Switch";
 import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import Contact from "../components/Contact";
 import CrossGrid from "../components/CrossGrid";
 import HeightSlider from "../components/HeightSlider";
 import LanguageSelector from "../components/LanguageSelector";
@@ -79,10 +80,12 @@ export default function MainPage() {
           sx={{
             display: "flex",
             justifyContent: "flex-end",
-            alignItems: "center",
+            alignItems: "center", // ensures vertical centering
             gap: 2,
+            minHeight: 56, // optional: matches MUI AppBar height for better alignment
           }}
         >
+          <Contact />
           <FormControlLabel
             control={
               <Switch
@@ -91,7 +94,6 @@ export default function MainPage() {
               />
             }
             label={isDarkMode ? t("labels.darkMode") : t("labels.lightMode")}
-            sx={{ mb: 2 }}
           />
           <LanguageSelector />
         </Box>

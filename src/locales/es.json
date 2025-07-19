@@ -10,7 +10,10 @@
     "height": "Alto",
     "justWords": "Solo palabras",
     "filledGrid": "Cuadro lleno",
-    "language": "Idioma"
+    "language": "Idioma",
+    "close": "Cerrar",
+    "contact": "Contacto",
+    "email": "Correo electrónico"
   },
   "app": {
     "title": "Generador de Crucigramas",

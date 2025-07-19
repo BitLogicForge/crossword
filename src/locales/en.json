@@ -10,7 +10,10 @@
     "height": "Height",
     "justWords": "Just Words",
     "filledGrid": "Filled Grid",
-    "language": "Language"
+    "language": "Language",
+    "close": "Close",
+    "contact": "Contact",
+    "email": "Email"
   },
   "app": {
     "title": "Crossword Generator",

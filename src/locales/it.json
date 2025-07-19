@@ -10,7 +10,10 @@
     "height": "Altezza",
     "justWords": "Solo parole",
     "filledGrid": "Griglia compilata",
-    "language": "Lingua"
+    "language": "Lingua",
+    "close": "Chiudi",
+    "contact": "Contatto",
+    "email": "Email"
   },
   "app": {
     "title": "Generatore di Cruciverba",
