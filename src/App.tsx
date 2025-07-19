@@ -2,8 +2,9 @@ import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect } from "react";
 import "./App.css";
+import Header from "./components/Header";
 import NotificationProvider from "./notifications/NotificationProvider";
-import MAinPage from "./pages/PageTwo";
+import MainPage from "./pages/MainPage";
 import { useAppDispatch, useAppSelector } from "./stores/hooks";
 import { setThemeOptions } from "./stores/slices/appSlice";
 import { darkOptions, lightOptions } from "./theme";
@@ -20,12 +21,15 @@ function App() {
   }, [isDark, dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <NotificationProvider>
-        <MAinPage />
-      </NotificationProvider>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <NotificationProvider>
+          <Header />
+          <MainPage />
+        </NotificationProvider>
+      </ThemeProvider>
+    </>
   );
 }
 

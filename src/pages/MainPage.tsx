@@ -22,7 +22,7 @@ import {
   toggleFilledGrid,
 } from "../stores/slices/crossSlice";
 
-export default function MAinPage() {
+export default function MainPage() {
   const gridSize = useAppSelector((state) => state.cross.gridSize);
   const words = useAppSelector((state) => state.cross.words);
   const showFilled = useAppSelector((state) => state.cross.showFilled);
