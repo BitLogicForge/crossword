@@ -1,0 +1,21 @@
+{
+  "labels": {
+    "crossword": "Mots croisés",
+    "regenerate": "Régénérer",
+    "newWord": "Nouveau mot",
+    "addWord": "Ajouter un mot",
+    "darkMode": "Mode sombre",
+    "lightMode": "Mode clair",
+    "width": "Largeur",
+    "height": "Hauteur",
+    "justWords": "Seulement les mots",
+    "filledGrid": "Grille remplie",
+    "language": "Langue"
+  },
+  "app": {
+    "title": "Générateur de mots croisés",
+    "description": "Créez et personnalisez des mots croisés instantanément. Ajustez la taille de la grille, ajoutez vos propres mots et générez facilement des mots croisés imprimables.",
+    "ogTitle": "Générateur de mots croisés",
+    "keywords": "mots croisés, générateur, puzzle, créer, personnaliser, imprimable, mots, taille de la grille"
+  }
+}

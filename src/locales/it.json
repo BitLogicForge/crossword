@@ -1,0 +1,21 @@
+{
+  "labels": {
+    "crossword": "Cruciverba",
+    "regenerate": "Rigenera",
+    "newWord": "Nuova parola",
+    "addWord": "Aggiungi parola",
+    "darkMode": "Modalità scura",
+    "lightMode": "Modalità chiara",
+    "width": "Larghezza",
+    "height": "Altezza",
+    "justWords": "Solo parole",
+    "filledGrid": "Griglia compilata",
+    "language": "Lingua"
+  },
+  "app": {
+    "title": "Generatore di Cruciverba",
+    "description": "Crea e personalizza cruciverba istantaneamente. Regola la dimensione della griglia, aggiungi le tue parole e genera cruciverba stampabili con facilità.",
+    "ogTitle": "Generatore di Cruciverba",
+    "keywords": "cruciverba, generatore, puzzle, crea, personalizza, stampabile, parole, dimensione griglia"
+  }
+}

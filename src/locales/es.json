@@ -1,0 +1,21 @@
+{
+  "labels": {
+    "crossword": "Crucigrama",
+    "regenerate": "Regenerar",
+    "newWord": "Nueva palabra",
+    "addWord": "Agregar palabra",
+    "darkMode": "Modo oscuro",
+    "lightMode": "Modo claro",
+    "width": "Ancho",
+    "height": "Alto",
+    "justWords": "Solo palabras",
+    "filledGrid": "Cuadro lleno",
+    "language": "Idioma"
+  },
+  "app": {
+    "title": "Generador de Crucigramas",
+    "description": "Crea y personaliza crucigramas al instante. Ajusta el tamaño de la cuadrícula, agrega tus propias palabras y genera crucigramas imprimibles fácilmente.",
+    "ogTitle": "Generador de Crucigramas",
+    "keywords": "crucigrama, generador, rompecabezas, crear, personalizar, imprimible, palabras, tamaño de la cuadrícula"
+  }
+}

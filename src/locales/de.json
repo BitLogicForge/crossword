@@ -1,0 +1,21 @@
+{
+  "labels": {
+    "crossword": "Kreuzworträtsel",
+    "regenerate": "Neu generieren",
+    "newWord": "Neues Wort",
+    "addWord": "Wort hinzufügen",
+    "darkMode": "Dunkler Modus",
+    "lightMode": "Heller Modus",
+    "width": "Breite",
+    "height": "Höhe",
+    "justWords": "Nur Wörter",
+    "filledGrid": "Ausgefülltes Gitter",
+    "language": "Sprache"
+  },
+  "app": {
+    "title": "Kreuzworträtsel Generator",
+    "description": "Erstelle und personalisiere Kreuzworträtsel sofort. Passe die Gittergröße an, füge eigene Wörter hinzu und generiere druckbare Kreuzworträtsel mit Leichtigkeit.",
+    "ogTitle": "Kreuzworträtsel Generator",
+    "keywords": "kreuzworträtsel, generator, rätsel, erstellen, personalisieren, druckbar, wörter, gittergröße"
+  }
+}
