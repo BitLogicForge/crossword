@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { wordList } from '../../data/initial';
+import { generateRandomId } from "../../utils/utils";
 
 type TExampleState = {
 
@@ -9,7 +10,7 @@ type TExampleState = {
   }
   currentGrid: string[][] | null;
   currentGridFilled: string[][] | null;
-  wordList: string[];
+  words: { label: string, id: string }[];
 };
 
 const initialState: TExampleState = {
@@ -19,7 +20,12 @@ const initialState: TExampleState = {
   },
   currentGrid: null,
   currentGridFilled: null,
-  wordList: wordList,
+  words: [...wordList.map(word => ({
+    label: word.toUpperCase(),
+    id: generateRandomId(20)
+  }))],
+
+
 
 };
 
@@ -47,14 +53,16 @@ const crossSlice = createSlice({
     setCurrentGridFilled: (state, action) => {
       state.currentGridFilled = action.payload;
     },
-    setWordList: (state, action) => {
-      state.wordList = action.payload;
-    },
-    addWordToList: (state, action) => {
-      state.wordList.push(action.payload);
+
+    addWordToList: (state, action: PayloadAction<string>) => {
+      if (!action.payload || action.payload.trim() === "") return;
+      state.words.push({
+        label: action.payload.toUpperCase(),
+        id: generateRandomId(20)
+      });
     },
     removeWordFromList: (state, action) => {
-      state.wordList = state.wordList.filter(word => word !== action.payload);
+      state.words = state.words.filter(word => word.id !== action.payload.id);
     },
     resetExampleState: () => initialState,
 
@@ -68,7 +76,7 @@ export const {
   resetGridSize,
   setCurrentGrid,
   setCurrentGridFilled,
-  setWordList,
+
   addWordToList,
   removeWordFromList,
   resetExampleState

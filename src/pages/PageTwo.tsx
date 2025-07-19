@@ -12,6 +12,8 @@ import { useState } from "react";
 import HeightSlider from "../components/HeightSlider";
 import LetterCell from "../components/LetterCell";
 import WidthSlider from "../components/WidthSlider";
+import WordAdd from "../components/WordAdd";
+import WordsList from "../components/WordsList";
 import { MyCrosswordGenerator } from "../logic/mycross";
 import { useAppDispatch, useAppSelector } from "../stores/hooks";
 import { toggleTheme } from "../stores/slices/appSlice";
@@ -36,7 +38,7 @@ export default function PageTwo() {
 
   return (
     <Container sx={{ mt: 3 }}>
-      <Paper elevation={3} sx={{ p: 3 }}>
+      <Paper sx={{ p: 3 }}>
         <Typography variant="h4" gutterBottom>
           Crossword Grid
         </Typography>
@@ -72,6 +74,8 @@ export default function PageTwo() {
             Regenerate Grid
           </Button>
         </Box>
+      </Paper>
+      <Paper sx={{ mt: 1, p: 3 }}>
         <Table sx={{ width: "fit-content", margin: "auto" }}>
           <TableBody>
             {(showFilled ? cgen["cross"].gridFilled : cgen["cross"].grid).map(
@@ -85,6 +89,10 @@ export default function PageTwo() {
             )}
           </TableBody>
         </Table>
+      </Paper>
+      <Paper sx={{ mt: 1, p: 3 }}>
+        <WordAdd />
+        <WordsList />
       </Paper>
     </Container>
   );
