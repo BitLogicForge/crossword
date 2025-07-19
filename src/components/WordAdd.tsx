@@ -10,7 +10,15 @@ export default function WordAdd() {
   const { t } = useTranslation();
 
   return (
-    <Box display={"flex"} gap={2} mb={2}>
+    <Box
+      display={"flex"}
+      gap={2}
+      mb={2}
+      sx={{
+        flexDirection: { xs: "column", sm: "row" }, // stack on xs, row on sm+
+        alignItems: { xs: "stretch", sm: "center" },
+      }}
+    >
       <TextField
         label={t("labels.newWord")}
         sx={{ flex: 1 }}

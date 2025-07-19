@@ -80,9 +80,10 @@ export default function MainPage() {
           sx={{
             display: "flex",
             justifyContent: "flex-end",
-            alignItems: "center", // ensures vertical centering
             gap: 2,
             minHeight: 56, // optional: matches MUI AppBar height for better alignment
+            flexDirection: { xs: "column", sm: "row" }, // stack on xs, row on sm+
+            alignItems: { xs: "stretch", sm: "center" },
           }}
         >
           <Contact />
@@ -98,8 +99,15 @@ export default function MainPage() {
           <LanguageSelector />
         </Box>
       </Paper>
-      <Paper sx={{ p: 3 }}>
-        <Box sx={{ display: "flex", gap: 2 }}>
+      <Paper sx={{ p: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            flexDirection: { xs: "column", sm: "row" }, // stack on xs, row on sm+
+            alignItems: { xs: "stretch", sm: "center" },
+          }}
+        >
           <Box sx={{ flex: 1 }}>
             <WidthSlider />
           </Box>
@@ -107,7 +115,15 @@ export default function MainPage() {
             <HeightSlider />
           </Box>
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 2,
+            flexDirection: { xs: "column", sm: "row" }, // stack on xs, row on sm+
+            alignItems: { xs: "stretch", sm: "center" },
+          }}
+        >
           <Button
             variant="contained"
             color="primary"
@@ -130,7 +146,7 @@ export default function MainPage() {
       <Paper
         sx={{
           mt: 1,
-          p: 3,
+          p: 1,
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "center" }}>
