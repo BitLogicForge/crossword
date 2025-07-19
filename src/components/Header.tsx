@@ -6,7 +6,7 @@ export default function Header() {
 
   return (
     <>
-      <title>Crossword Generator</title>
+      <title>{t("app.title")}</title>
       <meta name="description" content={t("app.description")} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="keywords" content={t("app.keywords")} />

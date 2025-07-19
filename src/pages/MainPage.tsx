@@ -72,7 +72,7 @@ export default function MainPage() {
               letterSpacing: 2,
             }}
           >
-            {t("labels.title")}
+            {t("app.title")}
           </Typography>
         </Box>
 
@@ -118,7 +118,7 @@ export default function MainPage() {
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Chip label={t("labels.title")} variant="outlined" size="small" />
+          <Chip label={t("app.title")} variant="outlined" size="small" />
         </Box>
         <CrossGrid />
         <Box sx={{ display: "flex", justifyContent: "center" }}>

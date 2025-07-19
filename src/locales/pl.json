@@ -1,7 +1,6 @@
 {
   "labels": {
     "crossword": "Krzyżówka",
-    "title": "Generator Krzyżówek",
     "regenerate": "Wygeneruj ponownie",
     "newWord": "Nowe słowo",
     "addWord": "Dodaj słowo",
@@ -10,7 +9,13 @@
     "width": "Szerokość",
     "height": "Wysokość",
     "justWords": "Tylko słowa",
-    "filledGrid": "Wypelniona siatka",
+    "filledGrid": "Wypełniona siatka",
     "language": "Język"
+  },
+  "app": {
+    "title": "Generator Krzyżówek",
+    "description": "Twórz i personalizuj krzyżówki błyskawicznie. Dostosuj rozmiar siatki, dodaj własne słowa i generuj krzyżówki do wydruku z łatwością.",
+    "ogTitle": "Generator Krzyżówek",
+    "keywords": "krzyżówka, generator, łamigłówka, tworzenie, personalizacja, do druku, słowa, rozmiar siatki"
   }
 }
