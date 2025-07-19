@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import notificationReducer from "../notifications/notificationSlice";
 import appReducer from "./slices/appSlice";
-import exampleReducer from "./slices/exampleSlice";
+import crossReducer from "./slices/crossSlice";
 export const store = configureStore({
   reducer: {
-    example: exampleReducer,
+    cross: crossReducer,
     app: appReducer,
     notifications: notificationReducer,
   },

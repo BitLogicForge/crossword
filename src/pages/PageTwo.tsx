@@ -3,39 +3,34 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Paper from "@mui/material/Paper";
-import Slider from "@mui/material/Slider";
 import Switch from "@mui/material/Switch";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import { SYMBOL } from "../constants/CApp";
+import HeightSlider from "../components/HeightSlider";
+import LetterCell from "../components/LetterCell";
+import WidthSlider from "../components/WidthSlider";
 import { MyCrosswordGenerator } from "../logic/mycross";
 import { useAppDispatch, useAppSelector } from "../stores/hooks";
 import { toggleTheme } from "../stores/slices/appSlice";
 
 export default function PageTwo() {
-  const [gridSize, setGridSize] = useState(20);
+  const gridSize = useAppSelector((state) => state.cross.gridSize);
   const [cgen, setCgen] = useState(() => {
-    const generator = new MyCrosswordGenerator(gridSize, gridSize);
+    const generator = new MyCrosswordGenerator(gridSize.width, gridSize.height);
     generator.fillGridWithRandomLetters();
     return generator;
   });
   const [showFilled, setShowFilled] = useState(false);
 
-  const handleRegenerate = (size = gridSize) => {
-    const generator = new MyCrosswordGenerator(size, size);
+  function handleRegenerate() {
+    const generator = new MyCrosswordGenerator(gridSize.width, gridSize.height);
     generator.fillGridWithRandomLetters();
     setCgen(generator);
-  };
+  }
 
-  const handleSliderChange = (_event: Event, value: number | number[]) => {
-    const size = Array.isArray(value) ? value[0] : value;
-    setGridSize(size);
-    handleRegenerate(size);
-  };
   const isDarkMode = useAppSelector((state) => state.app.isDarkTheme);
   const dispatch = useAppDispatch();
 
@@ -55,21 +50,8 @@ export default function PageTwo() {
           </Typography>
         </Box>
         <Box sx={{ mb: 2 }}>
-          <Typography gutterBottom>
-            Grid Size: {gridSize} x {gridSize}
-          </Typography>
-          {/* Slider from MUI */}
-          <Box sx={{ px: 2, mb: 2 }}>
-            <Slider
-              value={gridSize}
-              min={5}
-              max={30}
-              step={1}
-              onChange={handleSliderChange}
-              valueLabelDisplay="auto"
-              aria-label="Grid Size"
-            />
-          </Box>
+          <WidthSlider />
+          <HeightSlider />
         </Box>
         <FormControlLabel
           control={
@@ -97,34 +79,7 @@ export default function PageTwo() {
               (row, rowIdx) => (
                 <TableRow key={rowIdx}>
                   {row.map((cell, colIdx) => (
-                    <TableCell key={colIdx} sx={{ p: 0, m: 0, border: 0 }}>
-                      <Box
-                        sx={{
-                          width: 32,
-                          height: 32,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-
-                          fontWeight: "bold",
-                          fontSize: 18,
-
-                          borderRadius: 2,
-                          backgroundColor:
-                            cell === SYMBOL.EMPTY
-                              ? "secondary.main"
-                              : "primary.main",
-                          color:
-                            cell === SYMBOL.EMPTY
-                              ? "secondary.contrastText"
-                              : "primary.contrastText",
-
-                          margin: "2px",
-                        }}
-                      >
-                        {cell}
-                      </Box>
-                    </TableCell>
+                    <LetterCell key={`${rowIdx}-${colIdx}`} letter={cell} />
                   ))}
                 </TableRow>
               )
