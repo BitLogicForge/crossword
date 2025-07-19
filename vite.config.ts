@@ -8,4 +8,14 @@ export default defineConfig({
   esbuild: {
     drop: ['console', 'debugger'],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Example: split vendor code
+          vendor: ['react', 'react-dom', 'react-redux', '@mui/material'],
+        },
+      },
+    },
+  },
 })

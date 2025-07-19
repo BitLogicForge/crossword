@@ -14,7 +14,8 @@ const LANGUAGES = [
 
 export default function LanguageSelector() {
   const { i18n } = useTranslation();
-  const currentLang = i18n.language || "en";
+  const currentLang =
+    LANGUAGES.find((l) => i18n.language.startsWith(l.code))?.code || "en";
 
   const handleChange = (event: SelectChangeEvent) => {
     i18n.changeLanguage(event.target.value as string);
