@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { SYMBOL } from "../../constants/Cgeneral";
 import { wordList } from '../../data/initial';
 import type { TWord } from "../../types/general";
 import { generateRandomId } from "../../utils/utils";
@@ -61,9 +62,10 @@ const crossSlice = createSlice({
     },
 
     addWordToList: (state, action: PayloadAction<string>) => {
-      if (!action.payload || action.payload.trim() === "") return;
+      const cleaned = action.payload.split(SYMBOL.EMPTY).join("").trim();
+      if (!action.payload || cleaned === "") return;
       state.words.push({
-        label: action.payload.toUpperCase(),
+        label: cleaned.toUpperCase().trim(),
         id: generateRandomId(20)
       });
     },
