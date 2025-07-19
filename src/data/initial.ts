@@ -1,7 +1,9 @@
+//basic initial 5 words list
 export const wordList = [
-  "nude",
-  "boudoir",
-  "erotic",
-  "sensual",
-  "daring",
+  "apple",
+  "banana",
+  "cherry",
+  "date",
+  "grape",
+
 ];

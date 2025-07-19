@@ -2,6 +2,7 @@ import { Box, TableCell } from "@mui/material";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { SYMBOL } from "../constants/CApp";
+import { useAppSelector } from "../stores/hooks";
 
 type TProps = {
   letter: string;
@@ -9,21 +10,34 @@ type TProps = {
 
 export default function LetterCell({ letter }: TProps) {
   const [showLetter, setShowLetter] = useState(false);
+  const themeOptions = useAppSelector((state) => state.app.themeOptions);
 
   return (
     <TableCell sx={{ p: 0, m: 0, border: 0 }}>
       <Box
         component={motion.div}
         key={letter}
-        initial={{ scale: 1, opacity: 0 }}
+        initial={{
+          scale: 1,
+          opacity: 0,
+          backgroundColor:
+            letter === SYMBOL.EMPTY
+              ? themeOptions?.palette.primary.main
+              : themeOptions?.palette.secondary.main,
+        }}
         animate={{
-          scale: [1, 0.7, 0.2, 1],
-          opacity: [0, 1, 1, 1],
+          scale: [1, 0.5, 1],
+          opacity: [0, 0.7, 1],
+          backgroundColor:
+            letter === SYMBOL.EMPTY
+              ? themeOptions?.palette.secondary.main
+              : themeOptions?.palette.primary.main,
         }}
         transition={{
-          duration: 0.5,
-          times: [0, 0.2, 0.7, 1],
+          duration: 0.6,
+          times: [0, 0.7, 1],
           ease: "easeInOut",
+          backgroundColor: { duration: 1.4 }, // animate bg color
         }}
         onUpdate={(latest) => {
           // Hide letter when scale is less than 0.8 (during shrink)
@@ -38,8 +52,8 @@ export default function LetterCell({ letter }: TProps) {
           fontWeight: "bold",
           fontSize: 18,
           borderRadius: 2,
-          backgroundColor:
-            letter === SYMBOL.EMPTY ? "secondary.main" : "primary.main",
+          // backgroundColor:
+          //   letter === SYMBOL.EMPTY ? "secondary.main" : "primary.main",
           color: letter === SYMBOL.EMPTY ? "secondary.text" : "primary.text",
           margin: "2px",
         }}

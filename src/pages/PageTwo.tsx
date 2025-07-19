@@ -123,7 +123,7 @@ export default function MAinPage() {
         <CrossGrid />
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Chip
-            label="htpp://github.com/victorhmp/crossword"
+            label="https://bitlogicforge.github.io/crossword"
             variant="outlined"
             size="small"
           />
