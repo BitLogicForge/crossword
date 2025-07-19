@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import CrossGrid from "../components/CrossGrid";
 import HeightSlider from "../components/HeightSlider";
+import LanguageSelector from "../components/LanguageSelector";
 import WidthSlider from "../components/WidthSlider";
 import WordAdd from "../components/WordAdd";
 import WordsList from "../components/WordsList";
@@ -99,6 +100,7 @@ export default function MainPage() {
           label={isDarkMode ? t("labels.darkMode") : t("labels.lightMode")}
           sx={{ mb: 2 }}
         />
+        <LanguageSelector />
         <Box sx={{ mb: 2 }}>
           <Button
             variant="contained"
