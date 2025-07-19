@@ -1,4 +1,4 @@
-import { DIRECTION, SYMBOL, type TDirection } from "../constants/CApp";
+import { DIRECTION, SYMBOL, type TDirection } from "../constants/Cgeneral";
 import type { TWord } from "../types/general";
 
 export type TWordPlacement = {

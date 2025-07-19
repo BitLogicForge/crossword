@@ -1,7 +1,7 @@
 import { Box, TableCell } from "@mui/material";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { SYMBOL } from "../constants/CApp";
+import { SYMBOL } from "../constants/Cgeneral";
 import { useAppSelector } from "../stores/hooks";
 
 type TProps = {

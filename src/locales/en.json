@@ -12,5 +12,10 @@
     "justWords": "Just Words",
     "filledGrid": "Filled Grid",
     "language": "Language"
+  },
+  "app": {
+    "description": "Create and customize crossword puzzles instantly. Adjust grid size, add your own words, and generate printable crosswords with ease.",
+    "ogTitle": "Crossword Generator",
+    "keywords": "crossword, generator, puzzle, create, customize, printable, words, grid size"
   }
 }
