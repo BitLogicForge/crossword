@@ -76,7 +76,7 @@ export const lightOptions = {
 
 
 
-    background: { default: "#ffffff", paper: "#fff" },
+    background: { default: "#f5f5f5", paper: "#FFF" },
     text: { primary: "#212121", secondary: "#757575" },
   }
 

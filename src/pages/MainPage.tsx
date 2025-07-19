@@ -7,6 +7,7 @@ import Paper from "@mui/material/Paper";
 import Switch from "@mui/material/Switch";
 import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import CrossGrid from "../components/CrossGrid";
 import HeightSlider from "../components/HeightSlider";
 import WidthSlider from "../components/WidthSlider";
@@ -27,6 +28,7 @@ export default function MainPage() {
   const words = useAppSelector((state) => state.cross.words);
   const showFilled = useAppSelector((state) => state.cross.showFilled);
   const grid = useAppSelector((state) => state.cross.currentGrid);
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   function handleRegenerate() {
@@ -69,7 +71,7 @@ export default function MainPage() {
               letterSpacing: 2,
             }}
           >
-            Crossword Grid Generator
+            {t("labels.title")}
           </Typography>
         </Box>
 
@@ -84,7 +86,7 @@ export default function MainPage() {
               onChange={() => dispatch(toggleFilledGrid())}
             />
           }
-          label={showFilled ? "Filled Grid" : "Just Words"}
+          label={showFilled ? t("labels.filledGrid") : t("labels.justWords")}
           sx={{ mb: 2 }}
         />
         <FormControlLabel
@@ -94,7 +96,7 @@ export default function MainPage() {
               onChange={() => dispatch(toggleTheme())}
             />
           }
-          label={isDarkMode ? "Dark Mode" : "Light Mode"}
+          label={isDarkMode ? t("labels.darkMode") : t("labels.lightMode")}
           sx={{ mb: 2 }}
         />
         <Box sx={{ mb: 2 }}>
@@ -103,7 +105,7 @@ export default function MainPage() {
             color="primary"
             onClick={() => handleRegenerate()}
           >
-            Regenerate Grid
+            {t("labels.regenerate")}
           </Button>
         </Box>
       </Paper>
@@ -114,11 +116,7 @@ export default function MainPage() {
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Chip
-            label="Crossword Grid Generator"
-            variant="outlined"
-            size="small"
-          />
+          <Chip label={t("labels.title")} variant="outlined" size="small" />
         </Box>
         <CrossGrid />
         <Box sx={{ display: "flex", justifyContent: "center" }}>

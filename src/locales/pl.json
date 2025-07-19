@@ -1,5 +1,15 @@
 {
-  "app": {
-    "example": "Example"
+  "labels": {
+    "crossword": "Krzyżówka",
+    "title": "Generator Krzyżówek",
+    "regenerate": "Wygeneruj ponownie",
+    "newWord": "Nowe słowo",
+    "addWord": "Dodaj słowo",
+    "darkMode": "Tryb ciemny",
+    "lightMode": "Tryb jasny",
+    "width": "Szerokość",
+    "height": "Wysokość",
+    "justWords": "Tylko słowa",
+    "filledGrid": "wypelniona siatka"
   }
 }

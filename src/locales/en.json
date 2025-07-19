@@ -1,5 +1,15 @@
 {
-  "app": {
-    "example": "Example"
+  "labels": {
+    "crossword": "Crossword",
+    "title": "Crossword Generator",
+    "regenerate": "Regenerate",
+    "newWord": "New Word",
+    "addWord": "Add Word",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "width": "Width",
+    "height": "Height",
+    "justWords": "Just Words",
+    "filledGrid": "Filled Grid"
   }
 }

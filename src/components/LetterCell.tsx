@@ -11,7 +11,9 @@ type TProps = {
 export default function LetterCell({ letter }: TProps) {
   const [showLetter, setShowLetter] = useState(false);
   const themeOptions = useAppSelector((state) => state.app.themeOptions);
-
+  const delay = Math.random() * 0.4;
+  const duration = 0.6 + Math.random() * 0.1;
+  const bgDuration = 1.2 + Math.random() * 0.2;
   return (
     <TableCell sx={{ p: 0, m: 0, border: 0 }}>
       <Box
@@ -34,10 +36,11 @@ export default function LetterCell({ letter }: TProps) {
               : themeOptions?.palette.primary.main,
         }}
         transition={{
-          duration: 0.6,
+          delay: delay,
+          duration: duration,
           times: [0, 0.7, 1],
           ease: "easeInOut",
-          backgroundColor: { duration: 1.4 }, // animate bg color
+          backgroundColor: { duration: bgDuration, delay: delay },
         }}
         onUpdate={(latest) => {
           // Hide letter when scale is less than 0.8 (during shrink)
