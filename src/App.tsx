@@ -2,7 +2,7 @@ import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./App.css";
 import NotificationProvider from "./notifications/NotificationProvider";
-import PageTwo from "./pages/PageTwo";
+import MAinPage from "./pages/PageTwo";
 import { useAppSelector } from "./stores/hooks";
 import { darkOptions, lightOptions } from "./theme";
 
@@ -16,7 +16,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <NotificationProvider>
-        <PageTwo />
+        <MAinPage />
       </NotificationProvider>
     </ThemeProvider>
   );

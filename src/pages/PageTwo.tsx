@@ -1,3 +1,4 @@
+import { Chip } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -21,7 +22,7 @@ import {
   toggleFilledGrid,
 } from "../stores/slices/crossSlice";
 
-export default function PageTwo() {
+export default function MAinPage() {
   const gridSize = useAppSelector((state) => state.cross.gridSize);
   const words = useAppSelector((state) => state.cross.words);
   const showFilled = useAppSelector((state) => state.cross.showFilled);
@@ -50,18 +51,28 @@ export default function PageTwo() {
   return (
     <Container sx={{ mt: 3 }}>
       <Paper sx={{ p: 3 }}>
-        <Typography variant="h4" gutterBottom align="center">
-          Crossword Grid
-        </Typography>
-        <Box sx={{ mt: 2, display: "flex", alignItems: "center" }}>
-          <Switch
-            checked={isDarkMode}
-            onChange={() => dispatch(toggleTheme())}
-          />
-          <Typography variant="body1" sx={{ ml: 1 }}>
-            Toggle Dark mode
+        <Box
+          sx={{
+            backgroundColor: "primary.light",
+            borderRadius: 2,
+            py: 2,
+            px: 1,
+            mb: 2,
+          }}
+        >
+          <Typography
+            variant="h4"
+            align="center"
+            sx={{
+              fontWeight: "bold",
+              color: "primary.contrastText",
+              letterSpacing: 2,
+            }}
+          >
+            Crossword Grid Generator
           </Typography>
         </Box>
+
         <Box sx={{ mb: 2 }}>
           <WidthSlider />
           <HeightSlider />
@@ -76,6 +87,16 @@ export default function PageTwo() {
           label={showFilled ? "Filled Grid" : "Just Words"}
           sx={{ mb: 2 }}
         />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={isDarkMode}
+              onChange={() => dispatch(toggleTheme())}
+            />
+          }
+          label={isDarkMode ? "Dark Mode" : "Light Mode"}
+          sx={{ mb: 2 }}
+        />
         <Box sx={{ mb: 2 }}>
           <Button
             variant="contained"
@@ -86,8 +107,27 @@ export default function PageTwo() {
           </Button>
         </Box>
       </Paper>
-      <Paper sx={{ mt: 1, p: 3 }}>
+      <Paper
+        sx={{
+          mt: 1,
+          p: 3,
+        }}
+      >
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Chip
+            label="Crossword Grid Generator"
+            variant="outlined"
+            size="small"
+          />
+        </Box>
         <CrossGrid />
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Chip
+            label="htpp://github.com/victorhmp/crossword"
+            variant="outlined"
+            size="small"
+          />
+        </Box>
       </Paper>
       <Paper sx={{ mt: 1, p: 3 }}>
         <WordAdd />
