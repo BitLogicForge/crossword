@@ -22,10 +22,7 @@ export default function LetterCell({ letter }: TProps) {
           borderRadius: 2,
           backgroundColor:
             letter === SYMBOL.EMPTY ? "secondary.main" : "primary.main",
-          color:
-            letter === SYMBOL.EMPTY
-              ? "secondary.contrastText"
-              : "primary.contrastText",
+          color: letter === SYMBOL.EMPTY ? "secondary.text" : "primary.text",
 
           margin: "2px",
         }}

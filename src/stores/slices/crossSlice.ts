@@ -31,9 +31,11 @@ const crossSlice = createSlice({
       state.gridSize = action.payload;
     },
     setGridWidth: (state, action) => {
+      if (action.payload === state.gridSize.width) return;
       state.gridSize.width = action.payload;
     },
     setGridHeight: (state, action) => {
+      if (action.payload === state.gridSize.height) return;
       state.gridSize.height = action.payload;
     },
     resetGridSize: (state) => {
