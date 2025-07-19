@@ -18,7 +18,7 @@ type TCrosswordGrid = {
 };
 
 export class MyCrosswordGenerator {
-  private cross: TCrosswordGrid;
+  public cross: TCrosswordGrid;
   public noPlace: TWord[] = [];
 
   constructor(width: number, height: number, words: TWord[]) {

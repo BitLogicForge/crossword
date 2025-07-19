@@ -4,36 +4,29 @@ import Container from "@mui/material/Container";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Paper from "@mui/material/Paper";
 import Switch from "@mui/material/Switch";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useEffect } from "react";
+import CrossGrid from "../components/CrossGrid";
 import HeightSlider from "../components/HeightSlider";
-import LetterCell from "../components/LetterCell";
 import WidthSlider from "../components/WidthSlider";
 import WordAdd from "../components/WordAdd";
 import WordsList from "../components/WordsList";
 import { MyCrosswordGenerator } from "../logic/mycross";
 import { useAppDispatch, useAppSelector } from "../stores/hooks";
 import { toggleTheme } from "../stores/slices/appSlice";
-import { setNoPlaceWords } from "../stores/slices/crossSlice";
+import {
+  setCurrentGrid,
+  setCurrentGridFilled,
+  setNoPlaceWords,
+  toggleFilledGrid,
+} from "../stores/slices/crossSlice";
 
 export default function PageTwo() {
   const gridSize = useAppSelector((state) => state.cross.gridSize);
   const words = useAppSelector((state) => state.cross.words);
+  const showFilled = useAppSelector((state) => state.cross.showFilled);
+  const grid = useAppSelector((state) => state.cross.currentGrid);
   const dispatch = useAppDispatch();
-  const [cgen, setCgen] = useState(() => {
-    const generator = new MyCrosswordGenerator(
-      gridSize.width,
-      gridSize.height,
-      words
-    );
-    generator.fillGridWithRandomLetters();
-    dispatch(setNoPlaceWords(generator.noPlace));
-    return generator;
-  });
-  const [showFilled, setShowFilled] = useState(false);
 
   function handleRegenerate() {
     const generator = new MyCrosswordGenerator(
@@ -43,9 +36,14 @@ export default function PageTwo() {
     );
     generator.fillGridWithRandomLetters();
     dispatch(setNoPlaceWords(generator.noPlace));
-
-    setCgen(generator);
+    dispatch(setCurrentGrid(generator.cross.grid));
+    dispatch(setCurrentGridFilled(generator.cross.gridFilled));
   }
+  useEffect(() => {
+    if (grid.length === 0 || grid[0].length === 0) {
+      handleRegenerate();
+    }
+  }, []);
 
   const isDarkMode = useAppSelector((state) => state.app.isDarkTheme);
 
@@ -72,10 +70,10 @@ export default function PageTwo() {
           control={
             <Switch
               checked={showFilled}
-              onChange={() => setShowFilled((prev) => !prev)}
+              onChange={() => dispatch(toggleFilledGrid())}
             />
           }
-          label={showFilled ? "Show Filled Grid" : "Show Crossword Grid"}
+          label={showFilled ? "Filled Grid" : "Just Words"}
           sx={{ mb: 2 }}
         />
         <Box sx={{ mb: 2 }}>
@@ -89,19 +87,7 @@ export default function PageTwo() {
         </Box>
       </Paper>
       <Paper sx={{ mt: 1, p: 3 }}>
-        <Table sx={{ width: "fit-content", margin: "auto" }}>
-          <TableBody>
-            {(showFilled ? cgen["cross"].gridFilled : cgen["cross"].grid).map(
-              (row, rowIdx) => (
-                <TableRow key={rowIdx}>
-                  {row.map((cell, colIdx) => (
-                    <LetterCell key={`${rowIdx}-${colIdx}`} letter={cell} />
-                  ))}
-                </TableRow>
-              )
-            )}
-          </TableBody>
-        </Table>
+        <CrossGrid />
       </Paper>
       <Paper sx={{ mt: 1, p: 3 }}>
         <WordAdd />

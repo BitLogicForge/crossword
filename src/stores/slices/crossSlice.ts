@@ -9,8 +9,9 @@ type TCrossState = {
     width: number;
     height: number;
   }
-  currentGrid: string[][] | null;
-  currentGridFilled: string[][] | null;
+  currentGrid: string[][];
+  currentGridFilled: string[][];
+  showFilled: boolean;
   words: TWord[];
   noPlace: TWord[];
 };
@@ -21,8 +22,9 @@ const initialState: TCrossState = {
     width: 10,
     height: 10,
   },
-  currentGrid: null,
-  currentGridFilled: null,
+  currentGrid: [],
+  currentGridFilled: [],
+  showFilled: false,
   words: [...wordList.map(word => ({
     label: word.toUpperCase(),
     id: generateRandomId(20)
@@ -71,6 +73,9 @@ const crossSlice = createSlice({
     setNoPlaceWords: (state, action: PayloadAction<TWord[]>) => {
       state.noPlace = action.payload;
     },
+    toggleFilledGrid: (state) => {
+      state.showFilled = !state.showFilled;
+    },
     resetExampleState: () => initialState,
 
   },
@@ -86,6 +91,7 @@ export const {
   setNoPlaceWords,
   addWordToList,
   removeWordFromList,
+  toggleFilledGrid,
   resetExampleState
 } = crossSlice.actions;
 export default crossSlice.reducer;
