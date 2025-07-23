@@ -1,1 +1,1 @@
-export type TWord = { label: string, id: string }
+export type TWord = { label: string; id: string };

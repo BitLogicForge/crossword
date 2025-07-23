@@ -1,10 +1,10 @@
-import de from "./de.json";
-import en from "./en.json";
-import es from "./es.json";
-import fr from "./fr.json";
-import it from "./it.json";
-import pl from "./pl.json";
-import ru from "./ru.json";
+import de from './de.json';
+import en from './en.json';
+import es from './es.json';
+import fr from './fr.json';
+import it from './it.json';
+import pl from './pl.json';
+import ru from './ru.json';
 
 export const resources = {
   en: {

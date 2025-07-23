@@ -7,4 +7,3 @@ export function generateRandomId(length = 10): string {
   }
   return result;
 }
-

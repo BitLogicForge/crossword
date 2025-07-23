@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import { themeOptions } from './../../theme';
 
 type TState = {
@@ -7,24 +7,21 @@ type TState = {
 };
 
 const prefersDark =
-  typeof window !== "undefined" &&
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches;
-
+  typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 const initialState: TState = {
   isDarkTheme: prefersDark,
 };
 
 const appSlice = createSlice({
-  name: "appSlice",
+  name: 'appSlice',
   initialState,
   reducers: {
-    toggleTheme: (state) => {
+    toggleTheme: state => {
       state.isDarkTheme = !state.isDarkTheme;
     },
     setDarkTheme: (state, action) => {
-      console.log("setDarkTheme action payload:", action.payload);
+      console.log('setDarkTheme action payload:', action.payload);
       state.isDarkTheme = action.payload;
     },
     setThemeOptions: (state, action) => {

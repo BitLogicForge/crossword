@@ -1,7 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import notificationReducer from "../notifications/notificationSlice";
-import appReducer from "./slices/appSlice";
-import crossReducer from "./slices/crossSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import notificationReducer from '../notifications/notificationSlice';
+import appReducer from './slices/appSlice';
+import crossReducer from './slices/crossSlice';
 export const store = configureStore({
   reducer: {
     cross: crossReducer,

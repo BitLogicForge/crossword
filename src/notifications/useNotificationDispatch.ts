@@ -1,10 +1,6 @@
-import type { TSeverity } from "../constants/Cgeneral";
-import { useAppDispatch } from "../stores/hooks";
-import {
-  addNotification,
-  clearAllNotifications,
-  removeNotification,
-} from "./notificationSlice";
+import type { TSeverity } from '../constants/Cgeneral';
+import { useAppDispatch } from '../stores/hooks';
+import { addNotification, clearAllNotifications, removeNotification } from './notificationSlice';
 
 export const useNotificationDispatch = () => {
   const dispatch = useAppDispatch();

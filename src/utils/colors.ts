@@ -9,7 +9,7 @@ type ColorOptions = {
   blendAmount?: number;
   desaturate?: number;
   saturate?: number;
-}
+};
 
 type PaletteOptions = {
   lightAmount?: number;
@@ -19,13 +19,13 @@ type PaletteOptions = {
   towardsDark?: string | null;
   desaturateLight?: number;
   saturateDark?: number;
-}
+};
 
 type ColorPalette = {
   main: string;
   light: string;
   dark: string;
-}
+};
 type RGB = [number, number, number];
 
 type HSL = [number, number, number];
@@ -39,7 +39,7 @@ type ColorAnalysis = {
   contrastWithBlack: number;
   isLight: boolean;
   isDark: boolean;
-}
+};
 
 // Helper function to convert hex to HSL
 function hexToHsl(hex: string): HSL {
@@ -49,7 +49,9 @@ function hexToHsl(hex: string): HSL {
 
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
-  let h: number, s: number, l: number = (max + min) / 2;
+  let h: number,
+    s: number,
+    l: number = (max + min) / 2;
 
   if (max === min) {
     h = s = 0; // achromatic
@@ -57,10 +59,18 @@ function hexToHsl(hex: string): HSL {
     const d = max - min;
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
     switch (max) {
-      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-      case g: h = (b - r) / d + 2; break;
-      case b: h = (r - g) / d + 4; break;
-      default: h = 0; break;
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      case b:
+        h = (r - g) / d + 4;
+        break;
+      default:
+        h = 0;
+        break;
     }
     h /= 6;
   }
@@ -129,7 +139,7 @@ function rgbToHex(r: number, g: number, b: number): string {
  */
 function lighten(hex: string, amount: number = 0.15, options: ColorOptions = {}): string {
   const [h, s, l] = hexToHsl(hex);
-  let newL = Math.min(100, l + (amount * 100));
+  let newL = Math.min(100, l + amount * 100);
 
   // Optional: adjust towards another color
   if (options.towards) {
@@ -145,7 +155,7 @@ function lighten(hex: string, amount: number = 0.15, options: ColorOptions = {})
 
   // Optional: reduce saturation for more natural lighter colors
   if (options.desaturate) {
-    const newS = Math.max(0, s - (options.desaturate * 100));
+    const newS = Math.max(0, s - options.desaturate * 100);
     return hslToHex(h, newS, newL);
   }
 
@@ -161,7 +171,7 @@ function lighten(hex: string, amount: number = 0.15, options: ColorOptions = {})
  */
 function darken(hex: string, amount: number = 0.15, options: ColorOptions = {}): string {
   const [h, s, l] = hexToHsl(hex);
-  let newL = Math.max(0, l - (amount * 100));
+  let newL = Math.max(0, l - amount * 100);
 
   // Optional: adjust towards another color
   if (options.towards) {
@@ -176,7 +186,7 @@ function darken(hex: string, amount: number = 0.15, options: ColorOptions = {}):
 
   // Optional: increase saturation for richer darker colors
   if (options.saturate) {
-    const newS = Math.min(100, s + (options.saturate * 100));
+    const newS = Math.min(100, s + options.saturate * 100);
     return hslToHex(h, newS, newL);
   }
 
@@ -243,7 +253,7 @@ function generatePalette(mainColor: string, options: PaletteOptions = {}): Color
     towardsLight = null,
     towardsDark = null,
     desaturateLight = 0.1,
-    saturateDark = 0.1
+    saturateDark = 0.1,
   } = options;
 
   let light: string, dark: string;
@@ -260,18 +270,18 @@ function generatePalette(mainColor: string, options: PaletteOptions = {}): Color
     default: // 'hsl'
       light = lighten(mainColor, lightAmount, {
         towards: towardsLight || undefined,
-        desaturate: desaturateLight
+        desaturate: desaturateLight,
       });
       dark = darken(mainColor, darkAmount, {
         towards: towardsDark || undefined,
-        saturate: saturateDark
+        saturate: saturateDark,
       });
   }
 
   return {
     main: mainColor,
     light: light,
-    dark: dark
+    dark: dark,
   };
 }
 
@@ -299,7 +309,7 @@ function analyzeColor(hex: string): ColorAnalysis {
     contrastWithWhite: Math.round(contrastWithWhite * 100) / 100,
     contrastWithBlack: Math.round(contrastWithBlack * 100) / 100,
     isLight: luminance > 0.5,
-    isDark: luminance <= 0.5
+    isDark: luminance <= 0.5,
   };
 }
 
@@ -309,7 +319,7 @@ console.log('=== Color Palette Generator Examples ===\n');
 const colors: Array<{ name: string; hex: string }> = [
   { name: 'Primary Green', hex: '#2e7d32' },
   { name: 'Secondary Amber', hex: '#f9a825' },
-  { name: 'Error Red', hex: '#d32f2f' }
+  { name: 'Error Red', hex: '#d32f2f' },
 ];
 
 colors.forEach(({ name, hex }) => {
@@ -326,7 +336,7 @@ colors.forEach(({ name, hex }) => {
     towardsLight: '#ffffff',
     towardsDark: '#000000',
     desaturateLight: 0.15,
-    saturateDark: 0.2
+    saturateDark: 0.2,
   });
   console.log('  Advanced:', advanced);
 
@@ -335,10 +345,17 @@ colors.forEach(({ name, hex }) => {
 
 // Export functions for use
 export {
-  analyzeColor, blendColors, darken, generatePalette, hexToHsl, hexToRgb, hslToHex, lighten, rgbToHex, shade, tint
+  analyzeColor,
+  blendColors,
+  darken,
+  generatePalette,
+  hexToHsl,
+  hexToRgb,
+  hslToHex,
+  lighten,
+  rgbToHex,
+  shade,
+  tint,
 };
 
-export type {
-  ColorAnalysis, ColorOptions, ColorPalette, PaletteOptions
-};
-
+export type { ColorAnalysis, ColorOptions, ColorPalette, PaletteOptions };

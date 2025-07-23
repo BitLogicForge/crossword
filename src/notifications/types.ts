@@ -1,4 +1,4 @@
-import type { TSeverity } from "../constants/Cgeneral";
+import type { TSeverity } from '../constants/Cgeneral';
 
 export type TNotification = {
   id: string;
@@ -14,8 +14,8 @@ export type TNotificationState = {
     maxNotifications: number;
     spacing: number;
     position: {
-      vertical: "top" | "bottom";
-      horizontal: "left" | "center" | "right";
+      vertical: 'top' | 'bottom';
+      horizontal: 'left' | 'center' | 'right';
     };
   };
 };

@@ -1,16 +1,16 @@
-import { CssBaseline } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useEffect } from "react";
-import "./App.css";
-import Header from "./components/Header";
-import NotificationProvider from "./notifications/NotificationProvider";
-import MainPage from "./pages/MainPage";
-import { useAppDispatch, useAppSelector } from "./stores/hooks";
-import { setThemeOptions } from "./stores/slices/appSlice";
-import { darkOptions, lightOptions } from "./theme";
+import { CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect } from 'react';
+import './App.css';
+import Header from './components/Header';
+import NotificationProvider from './notifications/NotificationProvider';
+import MainPage from './pages/MainPage';
+import { useAppDispatch, useAppSelector } from './stores/hooks';
+import { setThemeOptions } from './stores/slices/appSlice';
+import { darkOptions, lightOptions } from './theme';
 
 function App() {
-  const isDark = useAppSelector((state) => state.app.isDarkTheme);
+  const isDark = useAppSelector(state => state.app.isDarkTheme);
   const dispatch = useAppDispatch();
   const options = isDark ? darkOptions : lightOptions;
   // Create theme dynamically based on dark mode

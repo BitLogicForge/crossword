@@ -2,7 +2,7 @@ interface WordPlacement {
   word: string;
   x: number;
   y: number;
-  direction: "horizontal" | "vertical";
+  direction: 'horizontal' | 'vertical';
 }
 
 interface CrosswordGrid {
@@ -23,23 +23,18 @@ class CrosswordGenerator {
     this.height = height;
     this.grid = Array(height)
       .fill(null)
-      .map(() => Array(width).fill(""));
+      .map(() => Array(width).fill(''));
   }
 
   // Check if a word can be placed at given position and direction
-  private canPlaceWord(
-    word: string,
-    x: number,
-    y: number,
-    direction: "horizontal" | "vertical"
-  ): boolean {
-    if (direction === "horizontal") {
+  private canPlaceWord(word: string, x: number, y: number, direction: 'horizontal' | 'vertical'): boolean {
+    if (direction === 'horizontal') {
       // Check if word fits horizontally
       if (x + word.length > this.width) return false;
 
       // Check if position is available
       for (let i = 0; i < word.length; i++) {
-        if (this.grid[y][x + i] !== "" && this.grid[y][x + i] !== word[i]) {
+        if (this.grid[y][x + i] !== '' && this.grid[y][x + i] !== word[i]) {
           return false;
         }
       }
@@ -49,7 +44,7 @@ class CrosswordGenerator {
 
       // Check if position is available
       for (let i = 0; i < word.length; i++) {
-        if (this.grid[y + i][x] !== "" && this.grid[y + i][x] !== word[i]) {
+        if (this.grid[y + i][x] !== '' && this.grid[y + i][x] !== word[i]) {
           return false;
         }
       }
@@ -58,13 +53,8 @@ class CrosswordGenerator {
   }
 
   // Place a word on the grid
-  private placeWord(
-    word: string,
-    x: number,
-    y: number,
-    direction: "horizontal" | "vertical"
-  ): void {
-    if (direction === "horizontal") {
+  private placeWord(word: string, x: number, y: number, direction: 'horizontal' | 'vertical'): void {
+    if (direction === 'horizontal') {
       for (let i = 0; i < word.length; i++) {
         this.grid[y][x + i] = word[i];
       }
@@ -78,15 +68,10 @@ class CrosswordGenerator {
   }
 
   // Calculate score for a placement (higher is better)
-  private calculatePlacementScore(
-    word: string,
-    x: number,
-    y: number,
-    direction: "horizontal" | "vertical"
-  ): number {
+  private calculatePlacementScore(word: string, x: number, y: number, direction: 'horizontal' | 'vertical'): number {
     let score = 0;
 
-    if (direction === "horizontal") {
+    if (direction === 'horizontal') {
       for (let i = 0; i < word.length; i++) {
         if (this.grid[y][x + i] === word[i]) {
           score += 10; // Bonus for crossing existing letters
@@ -103,9 +88,7 @@ class CrosswordGenerator {
     // Prefer more central positions
     const centerX = this.width / 2;
     const centerY = this.height / 2;
-    const distanceFromCenter = Math.sqrt(
-      Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
-    );
+    const distanceFromCenter = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
     score += Math.max(0, 50 - distanceFromCenter);
 
     return score;
@@ -115,14 +98,14 @@ class CrosswordGenerator {
   private findBestPosition(word: string): {
     x: number;
     y: number;
-    direction: "horizontal" | "vertical";
+    direction: 'horizontal' | 'vertical';
     score: number;
   } | null {
     let bestPosition = null;
     let bestScore = -1;
 
     // Try both directions
-    for (const direction of ["horizontal", "vertical"] as const) {
+    for (const direction of ['horizontal', 'vertical'] as const) {
       for (let y = 0; y < this.height; y++) {
         for (let x = 0; x < this.width; x++) {
           if (this.canPlaceWord(word, x, y, direction)) {
@@ -144,7 +127,7 @@ class CrosswordGenerator {
     // Reset grid and placements
     this.grid = Array(this.height)
       .fill(null)
-      .map(() => Array(this.width).fill(""));
+      .map(() => Array(this.width).fill(''));
     this.placements = [];
 
     // Sort words by length (longer words first for better placement)
@@ -156,8 +139,8 @@ class CrosswordGenerator {
       const centerX = Math.floor((this.width - firstWord.length) / 2);
       const centerY = Math.floor(this.height / 2);
 
-      if (this.canPlaceWord(firstWord, centerX, centerY, "horizontal")) {
-        this.placeWord(firstWord, centerX, centerY, "horizontal");
+      if (this.canPlaceWord(firstWord, centerX, centerY, 'horizontal')) {
+        this.placeWord(firstWord, centerX, centerY, 'horizontal');
       }
     }
 
@@ -167,17 +150,12 @@ class CrosswordGenerator {
       const bestPosition = this.findBestPosition(word);
 
       if (bestPosition) {
-        this.placeWord(
-          word,
-          bestPosition.x,
-          bestPosition.y,
-          bestPosition.direction
-        );
+        this.placeWord(word, bestPosition.x, bestPosition.y, bestPosition.direction);
       }
     }
 
     return {
-      grid: this.grid.map((row) => [...row]),
+      grid: this.grid.map(row => [...row]),
       placements: [...this.placements],
       width: this.width,
       height: this.height,
@@ -193,28 +171,21 @@ function printCrossword(
     randomLetters?: boolean;
     showNumbers?: boolean;
     cellSeparator?: string;
-  } = {}
+  } = {},
 ): string {
-  const {
-    fillBlanks = false,
-    randomLetters = false,
-    showNumbers = false,
-    cellSeparator = " ",
-  } = options;
+  const { fillBlanks = false, randomLetters = false, showNumbers = false, cellSeparator = ' ' } = options;
 
-  const grid = crossword.grid.map((row) => [...row]);
+  const grid = crossword.grid.map(row => [...row]);
 
   // Fill blanks with random letters if requested
   if (fillBlanks) {
     for (let y = 0; y < crossword.height; y++) {
       for (let x = 0; x < crossword.width; x++) {
-        if (grid[y][x] === "") {
+        if (grid[y][x] === '') {
           if (randomLetters) {
-            grid[y][x] = String.fromCharCode(
-              65 + Math.floor(Math.random() * 26)
-            );
+            grid[y][x] = String.fromCharCode(65 + Math.floor(Math.random() * 26));
           } else {
-            grid[y][x] = "·";
+            grid[y][x] = '·';
           }
         }
       }
@@ -226,16 +197,15 @@ function printCrossword(
     crossword.placements.forEach((placement, index) => {
       const number = (index + 1).toString();
       const cell = grid[placement.y][placement.x];
-      grid[placement.y][placement.x] =
-        cell === "" ? number : `${number}${cell}`;
+      grid[placement.y][placement.x] = cell === '' ? number : `${number}${cell}`;
     });
   }
 
   // Convert grid to string
-  let result = "";
+  let result = '';
   for (let y = 0; y < crossword.height; y++) {
-    const row = grid[y].map((cell) => (cell === "" ? "·" : cell.toUpperCase()));
-    result += row.join(cellSeparator) + "\n";
+    const row = grid[y].map(cell => (cell === '' ? '·' : cell.toUpperCase()));
+    result += row.join(cellSeparator) + '\n';
   }
 
   return result;
@@ -243,14 +213,12 @@ function printCrossword(
 
 // Function to print word list with clues
 function printWordList(crossword: CrosswordGrid): string {
-  let result = "\nWord List:\n";
-  result += "─".repeat(30) + "\n";
+  let result = '\nWord List:\n';
+  result += '─'.repeat(30) + '\n';
 
   crossword.placements.forEach((placement, index) => {
-    const direction = placement.direction === "horizontal" ? "Across" : "Down";
-    result += `${
-      index + 1
-    }. ${placement.word.toUpperCase()} (${direction}) - Position: (${
+    const direction = placement.direction === 'horizontal' ? 'Across' : 'Down';
+    result += `${index + 1}. ${placement.word.toUpperCase()} (${direction}) - Position: (${
       placement.x + 1
     }, ${placement.y + 1})\n`;
   });
@@ -259,52 +227,46 @@ function printWordList(crossword: CrosswordGrid): string {
 }
 
 // Main function to generate crossword
-function generateCrossword(
-  words: string[],
-  width: number,
-  height: number
-): CrosswordGrid {
+function generateCrossword(words: string[], width: number, height: number): CrosswordGrid {
   const generator = new CrosswordGenerator(width, height);
   return generator.generateCrossword(words);
 }
 
 // Example usage:
 const words = [
-  "TFP",
-  "NUDE",
-  "NUDE",
-  "NUDE",
-  "NUDE",
-  "NUDE",
-  "TOPLESS",
-  "TOPLESS",
-  "TOPLESS",
-  "TOPLESS",
-  "PORTRIAIT",
-  "NAKED",
-  "NAKED",
-  "NAKED",
-  "ASS",
-  "ASS",
-  "BOOBIES",
-  "PORTRAIT",
-  "BDSM",
-  "BDSM",
+  'TFP',
+  'NUDE',
+  'NUDE',
+  'NUDE',
+  'NUDE',
+  'NUDE',
+  'TOPLESS',
+  'TOPLESS',
+  'TOPLESS',
+  'TOPLESS',
+  'PORTRIAIT',
+  'NAKED',
+  'NAKED',
+  'NAKED',
+  'ASS',
+  'ASS',
+  'BOOBIES',
+  'PORTRAIT',
+  'BDSM',
+  'BDSM',
 ];
 const crossword = generateCrossword(words, 15, 15);
 
-console.log("Crossword Grid:");
+console.log('Crossword Grid:');
 console.log(printCrossword(crossword));
 
-console.log("\nWith filled blanks:");
+console.log('\nWith filled blanks:');
 console.log(printCrossword(crossword, { fillBlanks: true }));
 
-console.log("\nWith random letters:");
-console.log(
-  printCrossword(crossword, { fillBlanks: true, randomLetters: true })
-);
+console.log('\nWith random letters:');
+console.log(printCrossword(crossword, { fillBlanks: true, randomLetters: true }));
 
-console.log("\nWith numbers:");
+console.log('\nWith numbers:');
 console.log(printCrossword(crossword, { showNumbers: true }));
 
 console.log(printWordList(crossword));
