@@ -5,18 +5,21 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [react()],
   base: '/crossword/',
-  esbuild: {
-    drop: ['console', 'debugger'],
-  },
+  // esbuild options can be added here if needed, but 'drop' is not valid in Vite config
   server: {
     host: "0.0.0.0",
   },
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Example: split vendor code
-          vendor: ['react', 'react-dom', 'react-redux', '@mui/material'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (
+              ['react', 'react-dom', 'react-redux', '@mui/material'].some(pkg => id.includes(pkg))
+            ) {
+              return 'vendor';
+            }
+          }
         },
       },
     },

@@ -11,10 +11,10 @@ export default function WordAdd() {
 
   return (
     <Box
-      display={'flex'}
-      gap={2}
-      mb={2}
       sx={{
+        display: 'flex',
+        gap: 2,
+        mb: 2,
         flexDirection: { xs: 'column', sm: 'row' }, // stack on xs, row on sm+
         alignItems: { xs: 'stretch', sm: 'center' },
       }}
