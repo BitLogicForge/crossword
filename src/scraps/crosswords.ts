@@ -30,7 +30,7 @@ class CrosswordGenerator {
   private canPlaceWord(word: string, x: number, y: number, direction: 'horizontal' | 'vertical'): boolean {
     if (direction === 'horizontal') {
       // Check if word fits horizontally
-      if (x + word.length > this.width) return false;
+      if (x + word.length > this.width) {return false;}
 
       // Check if position is available
       for (let i = 0; i < word.length; i++) {
@@ -40,7 +40,7 @@ class CrosswordGenerator {
       }
     } else {
       // Check if word fits vertically
-      if (y + word.length > this.height) return false;
+      if (y + word.length > this.height) {return false;}
 
       // Check if position is available
       for (let i = 0; i < word.length; i++) {

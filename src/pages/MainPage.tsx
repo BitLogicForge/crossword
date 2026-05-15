@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Contact from '../components/Contact';
 import CrossGrid from '../components/CrossGrid';
@@ -28,18 +28,19 @@ export default function MainPage() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  function handleRegenerate() {
+  const handleRegenerate = useCallback(() => {
     const generator = new MyCrosswordGenerator(gridSize.width, gridSize.height, words);
     generator.fillGridWithRandomLetters();
     dispatch(setNoPlaceWords(generator.noPlace));
     dispatch(setCurrentGrid(generator.cross.grid));
     dispatch(setCurrentGridFilled(generator.cross.gridFilled));
-  }
+  }, [gridSize.width, gridSize.height, words, dispatch]);
+
   useEffect(() => {
     if (grid.length === 0 || grid[0].length === 0) {
       handleRegenerate();
     }
-  }, []);
+  }, [grid,handleRegenerate]);
 
   const isDarkMode = useAppSelector(state => state.app.isDarkTheme);
 

@@ -11,9 +11,9 @@ type TProps = {
 export default function LetterCell({ letter }: TProps) {
   const [showLetter, setShowLetter] = useState(false);
   const themeOptions = useAppSelector(state => state.app.themeOptions);
-  const delay = Math.random() * 0.4;
-  const duration = 0.6 + Math.random() * 0.1;
-  const bgDuration = 1.2 + Math.random() * 0.2;
+  const [delay] = useState(() => Math.random() * 0.4);
+  const [duration] = useState(() => 0.6 + Math.random() * 0.1);
+  const [bgDuration] = useState(() => 1.2 + Math.random() * 0.2);
   return (
     <TableCell sx={{ p: 0, m: 0, border: 0 }}>
       <Box

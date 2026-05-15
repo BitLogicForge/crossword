@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     // Set the theme options in the app slice
     dispatch(setThemeOptions(options));
-  }, [isDark, dispatch]);
+  }, [isDark, dispatch,options]);
 
   return (
     <>

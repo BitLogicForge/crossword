@@ -49,9 +49,9 @@ function hexToHsl(hex: string): HSL {
 
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
-  let h: number,
-    s: number,
-    l: number = (max + min) / 2;
+  let h: number;
+  let s: number;
+    const l: number = (max + min) / 2;
 
   if (max === min) {
     h = s = 0; // achromatic
@@ -85,11 +85,11 @@ function hslToHex(h: number, s: number, l: number): string {
   l = l / 100;
 
   const hue2rgb = (p: number, q: number, t: number): number => {
-    if (t < 0) t += 1;
-    if (t > 1) t -= 1;
-    if (t < 1 / 6) return p + (q - p) * 6 * t;
-    if (t < 1 / 2) return q;
-    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+    if (t < 0) {t += 1;}
+    if (t > 1) {t -= 1;}
+    if (t < 1 / 6) {return p + (q - p) * 6 * t;}
+    if (t < 1 / 2) {return q;}
+    if (t < 2 / 3) {return p + (q - p) * (2 / 3 - t) * 6;}
     return p;
   };
 
@@ -139,7 +139,7 @@ function rgbToHex(r: number, g: number, b: number): string {
  */
 function lighten(hex: string, amount: number = 0.15, options: ColorOptions = {}): string {
   const [h, s, l] = hexToHsl(hex);
-  let newL = Math.min(100, l + amount * 100);
+  const newL = Math.min(100, l + amount * 100);
 
   // Optional: adjust towards another color
   if (options.towards) {
@@ -171,7 +171,7 @@ function lighten(hex: string, amount: number = 0.15, options: ColorOptions = {})
  */
 function darken(hex: string, amount: number = 0.15, options: ColorOptions = {}): string {
   const [h, s, l] = hexToHsl(hex);
-  let newL = Math.max(0, l - amount * 100);
+  const newL = Math.max(0, l - amount * 100);
 
   // Optional: adjust towards another color
   if (options.towards) {
@@ -355,7 +355,8 @@ export {
   lighten,
   rgbToHex,
   shade,
-  tint,
+  tint
 };
 
-export type { ColorAnalysis, ColorOptions, ColorPalette, PaletteOptions };
+  export type { ColorAnalysis, ColorOptions, ColorPalette, PaletteOptions };
+

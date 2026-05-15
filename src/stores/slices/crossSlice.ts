@@ -41,11 +41,11 @@ const crossSlice = createSlice({
       state.gridSize = action.payload;
     },
     setGridWidth: (state, action) => {
-      if (action.payload === state.gridSize.width) return;
+      if (action.payload === state.gridSize.width) {return;}
       state.gridSize.width = action.payload;
     },
     setGridHeight: (state, action) => {
-      if (action.payload === state.gridSize.height) return;
+      if (action.payload === state.gridSize.height) {return;}
       state.gridSize.height = action.payload;
     },
     resetGridSize: state => {
@@ -60,7 +60,7 @@ const crossSlice = createSlice({
 
     addWordToList: (state, action: PayloadAction<string>) => {
       const cleaned = action.payload.split(SYMBOL.EMPTY).join('').trim();
-      if (!action.payload || cleaned === '') return;
+      if (!action.payload || cleaned === '') {return;}
       state.words.push({
         label: cleaned.toUpperCase().trim(),
         id: generateRandomId(20),

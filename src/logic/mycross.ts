@@ -124,14 +124,14 @@ export class MyCrosswordGenerator {
 
   private canPlaceWord(word: string, x: number, y: number, direction: TDirection): boolean {
     if (direction === DIRECTION.H) {
-      if (x + word.length > this.cross.width) return false;
+      if (x + word.length > this.cross.width) {return false;}
       for (let i = 0; i < word.length; i++) {
         if (this.cross.grid[y][x + i] !== SYMBOL.EMPTY && this.cross.grid[y][x + i] !== word[i]) {
           return false;
         }
       }
     } else {
-      if (y + word.length > this.cross.height) return false;
+      if (y + word.length > this.cross.height) {return false;}
       for (let i = 0; i < word.length; i++) {
         if (this.cross.grid[y + i][x] !== SYMBOL.EMPTY && this.cross.grid[y + i][x] !== word[i]) {
           return false;
