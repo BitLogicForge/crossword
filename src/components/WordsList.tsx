@@ -1,6 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Chip } from '@mui/material';
-import { AnimatePresence, motion } from 'framer-motion'; // <-- Add this
+import { AnimatePresence, motion } from 'motion/react';
 import { useAppDispatch, useAppSelector } from '../stores/hooks';
 import { removeWordFromList } from '../stores/slices/crossSlice';
 

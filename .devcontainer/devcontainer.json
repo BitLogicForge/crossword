@@ -7,9 +7,8 @@
   "remoteUser": "node",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "mounts": [
-    "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+    "source=reactTemplate-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
   ],
-  "postCreateCommand": "sudo chown -R node:node /workspaces/${localWorkspaceFolderBasename}/node_modules && npm install",
   "forwardPorts": [
     5173,
     4173

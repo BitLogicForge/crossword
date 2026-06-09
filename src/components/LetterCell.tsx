@@ -1,5 +1,5 @@
 import { Box, TableCell } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useState } from 'react';
 import { SYMBOL } from '../constants/Cgeneral';
 import { useAppSelector } from '../stores/hooks';
@@ -38,7 +38,7 @@ export default function LetterCell({ letter }: TProps) {
           ease: 'easeInOut',
           backgroundColor: { duration: bgDuration, delay: delay },
         }}
-        onUpdate={latest => {
+        onUpdate={(latest: { scale?: number }) => {
           // Hide letter when scale is less than 0.8 (during shrink)
           setShowLetter(typeof latest.scale === 'number' && latest.scale > 0.8);
         }}
