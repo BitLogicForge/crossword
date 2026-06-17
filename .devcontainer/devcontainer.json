@@ -1,6 +1,6 @@
 {
   "name": "${localWorkspaceFolderBasename}",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:dev-24-bookworm",
+  "image": "my-node-dev:24",
   "runArgs": [
     "--name=${localWorkspaceFolderBasename}-dev"
   ],
